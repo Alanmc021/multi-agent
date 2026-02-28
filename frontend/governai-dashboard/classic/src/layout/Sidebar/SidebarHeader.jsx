@@ -64,15 +64,10 @@
 import { ArrowBarToLeft } from 'tabler-icons-react';
 import { Button } from 'react-bootstrap';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useGlobalStateContext } from '@/context/GolobalStateProvider';
-//Images
-import logo from '@/assets/img/logo-brand-governa-ai.svg';
-import jampackImg from '@/assets/img/logo-governa-ia.svg';
 
-
-const SidebarHeader = ({ isSidebarHovered = false }) => {
-    const { states, dispatch } = useGlobalStateContext();
+const SidebarHeader = () => {
+    const { dispatch } = useGlobalStateContext();
 
     const toggleSidebar = () => {
         dispatch({ type: 'sidebar_toggle' });
@@ -81,11 +76,10 @@ const SidebarHeader = ({ isSidebarHovered = false }) => {
     return (
         <div className="menu-header">
             <span>
-                <Link className="navbar-brand" href="/dashboard-analytics">
-                    {states.layoutState.isSidebarCollapsed && !isSidebarHovered && (
-                        <Image className="brand-img img-fluid" src={logo} alt="brand" />
-                    )}
-                    <Image className="brand-img img-fluid" src={jampackImg} alt="brand" />
+                <Link className="navbar-brand text-decoration-none" href="/apps/agents">
+                    <span className="fw-bold" style={{ fontSize: '1rem', color: '#0d6efd' }}>
+                        multi-agente
+                    </span>
                 </Link>
                 <Button variant="flush-dark" onClick={toggleSidebar} className="btn-icon btn-rounded flush-soft-hover navbar-toggle">
                     <span className="icon">
@@ -98,6 +92,5 @@ const SidebarHeader = ({ isSidebarHovered = false }) => {
         </div>
     )
 }
-
 
 export default SidebarHeader
